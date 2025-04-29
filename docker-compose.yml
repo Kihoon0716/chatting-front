@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+      - VITE_API_URL=http://localhost:8002
+    command: nginx -g 'daemon off;'
+    extra_hosts:
+      - "host.docker.internal:host-gateway" 
